@@ -13,8 +13,8 @@ const Product = ({ product }) => {
 
     return (
       <>
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={img} />
+        <Card style={{ width: '18rem', height: '36rem' }}>
+          <Card.Img variant="top" style={{ height: '300px' }} src={img} />
           <Card.Body>
             <Card.Title>{name}</Card.Title>
             <p>

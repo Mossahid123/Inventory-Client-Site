@@ -1,9 +1,10 @@
 import React from 'react';
+import './Blogs.css'
 
 const Blogs = () => {
     return (
-        <div>
-            <div>
+        <div className='bolgs-container'>
+            <div className='w-50 mx-auto'>
                 <h1>Difference between javascript and nodejs</h1>
                 <p>
                     <h3>1. NodeJS :</h3>
@@ -13,7 +14,7 @@ const Blogs = () => {
                     Javascript is a Scripting language. It is mostly abbreviated as JS. It can be said that Javascript is the updated version of the ECMA script. Javascript is a high-level programming language that uses the concept of Oops but it is based on prototype inheritance.
                 </p>
             </div>
-            <div>
+            <div className='w-50 mx-auto'>
                 <h1> Differences between sql and nosql databases</h1>
                 <p>
                      <h3>SQL</h3>

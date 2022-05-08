@@ -17,7 +17,6 @@ const AddProduct = () => {
         })
         .then(res => res.json())
         .then(result =>{
-            reset(result);
             console.log(result);
             toast('product added')
         })
