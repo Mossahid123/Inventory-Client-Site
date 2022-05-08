@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import useProducts from '../../Hooks/useProducts';
 
 const MyProducts = () => {
@@ -46,9 +45,6 @@ const MyProducts = () => {
                                         <p>
                                             Descriptions: {product.description.slice(0, 20)}
                                         </p>
-                                        <Link to={`/addproduct`}>
-                                            <Button className='btn btn-primary m-2 '>Add new product </Button>
-                                        </Link>
                                         <Button onClick={() => handleDelete(product._id)} className="btn btn-danger"   >Delete</Button>
                                     </Card.Body>
                                 </Card></div>)}

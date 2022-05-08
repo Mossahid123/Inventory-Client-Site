@@ -1,5 +1,5 @@
 import { Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './Product.css'
 
 const Product = ({ product }) => {
@@ -31,7 +31,7 @@ const Product = ({ product }) => {
               Descriptions: {description.slice(0 , 20)}
             </p>
 
-            <Button className="btn btn-primary w-100 rounded-2 " onClick={() =>navigateToProductDetail(_id)}  >Update</Button>
+            <Button className="btn btn-dark w-100 rounded-2 " onClick={() =>navigateToProductDetail(_id)}  >Update</Button>
           </Card.Body>
         </Card>
       </div>

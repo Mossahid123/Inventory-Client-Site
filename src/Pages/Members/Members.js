@@ -17,8 +17,8 @@ const Members = () => {
                     {
                         members.map(member =>
                             <div key={member._id}>
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" src={member.img} />
+                                <Card style={{ width: '18rem',height: '40rem'  }}>
+                                    <Card.Img style={{ height: '300px' }} variant="top" src={member.img} />
                                     <Card.Body>
                                         <Card.Title> Name: {member.name}</Card.Title>
                                         <p>
@@ -33,7 +33,7 @@ const Members = () => {
                                         <p>
                                             Descriptions: {member.description}
                                         </p>
-                                        <Button className='btn btn-primary w-100'>Visit Profile </Button>
+                                        <Button className='btn btn-dark w-100'>Visit Profile </Button>
 
                                     </Card.Body>
                                 </Card>
