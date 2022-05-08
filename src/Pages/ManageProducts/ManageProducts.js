@@ -31,8 +31,8 @@ const ManageProducts = () => {
                     {
                         products.map(product =>
                             <div key={product._id}>
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" src={product.img} />
+                                <Card style={{ width: '18rem', height: '40rem' }}>
+                                    <Card.Img style={{ height: '300px' }} variant="top" src={product.img} />
                                     <Card.Body>
                                         <Card.Title>{product.name}</Card.Title>
                                         <p>
@@ -45,7 +45,7 @@ const ManageProducts = () => {
                                             Quantity: {product.quantity}
                                         </p>
                                         <p>
-                                            Descriptions: {product.description}
+                                            Descriptions: {product.description.slice(0, 20)}
                                         </p>
                                         <Link to={`/addproduct`}>
                                             <Button className='btn btn-primary m-2 '>Add new product </Button>

@@ -12,6 +12,7 @@ import ProductDetail from './Pages/ProductDetail/ProductDetail';
 import Product from './Pages/Product/Product';
 import AddProduct from './Pages/AddProduct/AddProduct';
 import ManageProducts from './Pages/ManageProducts/ManageProducts';
+import { ToastContainer } from 'react-bootstrap';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }
