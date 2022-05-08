@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
-import useProducts from '../../Hooks/useProducts';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const MyProducts = () => {
-    const [products, setProducts] = useProducts()
+    // const [products, setProducts] = useProducts()
+    const [product, setProduct] = useState([])
+
+    const [user] = useAuthState(auth)
+
+
+    useEffect(()=>{
+        fetch(`https://agile-ocean-37553.herokuapp.com/myproduct?email=${user.email}`)
+        .then(res => res.json())
+        .then(data => setProduct(data))
+
+    },[user])
+    
+
     const handleDelete = _id => {
         const proceed = window.confirm('Delete tha product !!')
         if (proceed) {
-            const url = `https://agile-ocean-37553.herokuapp.com/product/${_id}`
+            const url =`https://agile-ocean-37553.herokuapp.com/product/${_id}`
             fetch(url, {
                 method: "DELETE"
             })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    const remaining = products.filter(product => product._id !== _id)
-                    setProducts(remaining)
+                    const remaining = product.filter(product => product._id !== _id)
+                    setProduct(remaining)
                 })
 
         }
@@ -24,13 +38,13 @@ const MyProducts = () => {
 
         <div id='products' className='container'>
             <div className="row ">
-                <h1 className='products-title mt-5'>  My Inventory  </h1>
+                <h1 className='products-title mt-5'>  My Items </h1>
                 <div className="products-container">
                     {
-                        products.map(product =>
+                        product.map(product =>
                             <div key={product._id}>
-                                <Card style={{ width: '18rem', height: '40rem' }}>
-                                    <Card.Img style={{ height: '300px' }} variant="top" src={product.img} />
+                                <Card style={{ width: '18rem' }}>
+                                    <Card.Img height={'200px'} variant="top" src={product.img} />
                                     <Card.Body>
                                         <Card.Title>{product.name}</Card.Title>
                                         <p>
@@ -43,14 +57,21 @@ const MyProducts = () => {
                                             Quantity: {product.quantity}
                                         </p>
                                         <p>
-                                            Descriptions: {product.description.slice(0, 20)}
+                                            Descriptions: {product.description}
                                         </p>
                                         <Button onClick={() => handleDelete(product._id)} className="btn btn-danger"   >Delete</Button>
                                     </Card.Body>
-                                </Card></div>)}
+                                </Card>
+                            </div>
+
+                        )
+                    }
                 </div>
+
             </div>
-        </div>);
+        </div>
+
+    );
 };
 
 export default MyProducts;
