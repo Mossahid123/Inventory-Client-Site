@@ -1,5 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import './Product.css'
 
 const Product = ({ product }) => {
 
@@ -12,8 +13,8 @@ const Product = ({ product }) => {
   }
 
     return (
-      <>
-        <Card style={{ width: '18rem', height: '36rem' }}>
+      <div className="product-container w-100 mx-auto">
+        <Card>
           <Card.Img variant="top" style={{ height: '300px' }} src={img} />
           <Card.Body>
             <Card.Title>{name}</Card.Title>
@@ -33,7 +34,7 @@ const Product = ({ product }) => {
             <Button className="btn btn-primary w-100 rounded-2 " onClick={() =>navigateToProductDetail(_id)}  >Update</Button>
           </Card.Body>
         </Card>
-      </>
+      </div>
 
     );
   };

@@ -1,67 +1,70 @@
-import React, { useState } from 'react';
+import { default as React, useState } from 'react';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
-import './Register.css';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
-import Loading from '../../../Shared/Loading/Loading';
+import './Register.css';
+ 
 
 const Register = () => {
-    const [agree, setAgree] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [agree, setAgree] = useState(false)
     const [
         createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
+        user, error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    const navigateLogin = () => {
-        navigate('/login');
+    if (error) {
+        return (<p>Error: {error.message}</p>);
     }
-
-    if (loading || updating) {
-        return <Loading></Loading>
-    }
-
     if (user) {
-        console.log('user', user);
-    }
-
-    const handleRegister = async (event) => {
-        event.preventDefault();
-        const name = event.target.name.value;
-        const email = event.target.email.value;
-        const password = event.target.password.value;
-        // const agree = event.target.terms.checked;
-
-        await createUserWithEmailAndPassword(email, password);
-        await updateProfile({ displayName: name });
-        console.log('Updated profile');
-        navigate('/home');
+        navigate('/home')
     }
 
     return (
-        <div className='register-form w-50 mx-auto'>
-            <h2 style={{ textAlign: 'center' }}>Please Register</h2>
-            <form onSubmit={handleRegister} className='d-flex flex-column'>
-                <input className='mb-2' type="text" name="name" id="" placeholder='Your Name' />
-
-                <input className='mb-2' type="email" name="email" id="" placeholder='Email Address' required />
-
-                <input className='mb-2' type="password" name="password" id="" placeholder='Password' required />
-                <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
-                <label className={`ps-2 ${agree ? '' : 'text-danger'}`} htmlFor="terms">Accept  Terms and Conditions</label>
+        <div className='register-form w-50 mt-5'>
+            <h2 className='text-center'> Please Register</h2>
+            <form  className='mb-5' >
                 <input
-                    disabled={!agree}
-                    className='w-50 mx-auto btn btn-primary mt-2'
-                    type="submit"
-                    value="Register" />
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder='Enter your name'
+                />
+
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder='Enter your email'
+                    required
+                />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder='Enter your password'
+                    required
+                />
+
+                <p className='text-danger'>{error}</p>
+                <input onClick={() => setAgree(!agree)} className='mb-4' type="checkbox" name="terms" id="terms" />
+
+                <label className={`ps-2 ${agree ? 'text-dark' : 'text-danger'}`} htmlFor="terms">Accept Terms and Conditions</label><br />
+                <button disabled={!agree} onClick={() => createUserWithEmailAndPassword(email, password)}>
+                   <span className='bg-dark text-white p-2'> Register</span>
+                </button>
+
+                 
             </form>
-            <p>Already have an account? <Link to="/login" className='text-primary pe-auto text-decoration-none' onClick={navigateLogin}>Please Login</Link> </p>
-            <SocialLogin></SocialLogin>
+            <p>Do you have Already?<Link to="/login" className='text-info pe-auto text-decoration-none'  > Click here</Link></p>
+
+             
+          <SocialLogin></SocialLogin>
         </div>
     );
 };

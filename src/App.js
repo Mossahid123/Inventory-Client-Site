@@ -13,6 +13,7 @@ import Product from './Pages/Product/Product';
 import AddProduct from './Pages/AddProduct/AddProduct';
 import ManageProducts from './Pages/ManageProducts/ManageProducts';
 import { ToastContainer } from 'react-bootstrap';
+import MyProducts from './Pages/MyProducts/MyProducts';
 
 function App() {
   return (
@@ -38,7 +39,12 @@ function App() {
         </Route>
         <Route path='/manage' element={
           <RequireAuth>
-           <ManageProducts></ManageProducts>
+            <ManageProducts></ManageProducts>
+          </RequireAuth>}>
+        </Route>
+        <Route path='/myitems' element={
+          <RequireAuth>
+            <MyProducts></MyProducts>
           </RequireAuth>}>
         </Route>
         <Route path='/'></Route>

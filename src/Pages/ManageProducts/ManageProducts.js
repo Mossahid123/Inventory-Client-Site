@@ -9,7 +9,7 @@ const ManageProducts = () => {
     const handleDelete = _id => {
         const proceed = window.confirm('Delete tha product !!')
         if (proceed) {
-            const url = `http://localhost:5000/product/${_id}`
+            const url = `https://agile-ocean-37553.herokuapp.com/product/${_id}`
             fetch(url, {
                 method: "DELETE"
             })

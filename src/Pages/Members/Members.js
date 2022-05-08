@@ -11,7 +11,7 @@ const Members = () => {
             .then(data => setMembers(data))
     }, [])
     return (
-        <div id='members'>
+        <div id='members' className='mt-5'>
                 <h2 className='members-title'>Our Members</h2>
                 <div className='members-container'>
                     {
