@@ -28,7 +28,7 @@ const Product = ({ product }) => {
               Quantity: {quantity}
             </p>
             <p>
-              Descriptions: {description.slice(0 , 20)}
+              Descriptions:{description.slice(0 , 20)}
             </p>
 
             <Button className="btn btn-dark w-100 rounded-2 " onClick={() =>navigateToProductDetail(_id)}  >Update</Button>
