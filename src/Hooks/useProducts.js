@@ -4,7 +4,7 @@ const useProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('https://agile-ocean-37553.herokuapp.com/product')
+        fetch('https://inventory-server-v41p.onrender.com//product')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);

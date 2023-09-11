@@ -10,7 +10,7 @@ const AddProduct = () => {
     const [user] = useAuthState(auth);
     const onSubmit = data => {
         console.log(data)
-        const url =" https://agile-ocean-37553.herokuapp.com/product";
+        const url =" https://inventory-server-v41p.onrender.com//product";
         fetch(url,{
             method: 'POST',
             headers: {

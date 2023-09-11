@@ -9,7 +9,7 @@ const ProductDetail = () => {
 
     let { img, name, price, description, supplier, quantity } = product;
     useEffect(() => {
-        const url = `https://agile-ocean-37553.herokuapp.com/product/${productId}`
+        const url = `https://inventory-server-v41p.onrender.com//product/${productId}`
         console.log(url);
         fetch(url)
             .then(res => res.json())
@@ -21,7 +21,7 @@ const ProductDetail = () => {
         let Remaining = parseFloat(+quantity) - 1
         let newInventory = { img, name, price, supplier, quantity: Remaining, description, }
         setProduct(newInventory)
-        fetch(`https://agile-ocean-37553.herokuapp.com/product/${productId}`, {
+        fetch(`https://inventory-server-v41p.onrender.com//product/${productId}`, {
             method: 'PUT',
             body: JSON.stringify(newInventory),
             headers: {
@@ -40,7 +40,7 @@ const ProductDetail = () => {
         let updatedQuantity = parseFloat(+quantity) + 1
         let newInventory = { img, name, price, supplier, quantity: updatedQuantity, description }
         setProduct(newInventory)
-        fetch(`https://agile-ocean-37553.herokuapp.com/product/${productId}`, {
+        fetch(`https://inventory-server-v41p.onrender.com//product/${productId}`, {
             method: 'PUT',
             body: JSON.stringify(newInventory),
             headers: {

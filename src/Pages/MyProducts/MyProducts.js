@@ -11,7 +11,7 @@ const MyProducts = () => {
 
 
     useEffect(()=>{
-        fetch(`https://agile-ocean-37553.herokuapp.com/myproduct?email=${user.email}`)
+        fetch(`https://inventory-server-v41p.onrender.com//myproduct?email=${user.email}`)
         .then(res => res.json())
         .then(data => setProduct(data))
 
@@ -21,7 +21,7 @@ const MyProducts = () => {
     const handleDelete = _id => {
         const proceed = window.confirm('Delete tha product !!')
         if (proceed) {
-            const url =`https://agile-ocean-37553.herokuapp.com/product/${_id}`
+            const url =`https://inventory-server-v41p.onrender.com//product/${_id}`
             fetch(url, {
                 method: "DELETE"
             })
